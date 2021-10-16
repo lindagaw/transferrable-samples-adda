@@ -11,10 +11,8 @@ def get_svhn(train):
     """Get SVHN dataset loader."""
     # image pre-processing
     pre_process = transforms.Compose([transforms.ToTensor(),
-                                      transforms.Normalize(
-                                          mean=(params.dataset_mean,),
-                                          std=(params.dataset_std,)),
-                                          transforms.Resize((224,224))])
+                                      transforms.Normalize(mean=(0.5, 0.5, 0.5), std=(0.5, 0.5, 0.5)
+                                      transforms.Resize((224,224))])
     # dataset and data loader
     svhn_dataset = datasets.SVHN(root=params.data_root,
                                    #train=train,
