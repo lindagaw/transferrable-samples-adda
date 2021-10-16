@@ -13,8 +13,8 @@ def eval_tgt(encoder, classifier, data_loader):
     classifier.eval()
 
     # init loss and accuracy
-    loss = 0
-    acc = 0
+    loss = 0.0
+    acc = 0.0
 
     # set loss function
     criterion = nn.CrossEntropyLoss()
