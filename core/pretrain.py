@@ -38,7 +38,8 @@ def train_src(encoder, classifier, data_loader):
             optimizer.zero_grad()
 
             # compute loss for critic
-            preds = classifier(encoder(images))
+            encoded = encoder(images)
+            preds = classifier(encoded)
             loss = criterion(preds, labels)
 
             # optimize source classifier
