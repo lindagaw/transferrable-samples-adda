@@ -107,9 +107,9 @@ def train_tgt(src_encoder, tgt_encoder, critic,
                               params.num_epochs,
                               step + 1,
                               len_data_loader,
-                              loss_critic.data[0],
-                              loss_tgt.data[0],
-                              acc.data[0]))
+                              loss_critic.data,
+                              loss_tgt.data,
+                              acc.data))
 
         #############################
         # 2.4 save model parameters #
