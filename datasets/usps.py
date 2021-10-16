@@ -1,5 +1,4 @@
 """Dataset setting and data loader for USPS.
-
 Modified from
 https://github.com/mingyuliutw/CoGAN/blob/master/cogan_pytorch/src/dataset_usps.py
 """
@@ -19,7 +18,6 @@ import params
 
 class USPS(data.Dataset):
     """USPS Dataset.
-
     Args:
         root (string): Root directory of dataset where dataset file exist.
         train (bool, optional): If True, resample from dataset randomly.
@@ -63,7 +61,6 @@ class USPS(data.Dataset):
 
     def __getitem__(self, index):
         """Get images and target for data loader.
-
         Args:
             index (int): Index
         Returns:
@@ -121,7 +118,7 @@ def get_usps(train):
                                       transforms.Normalize(
                                           mean=params.dataset_mean,
                                           std=params.dataset_std)])
-
+    pre_process =  transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5,), (0.5,))])
     # dataset and data loader
     usps_dataset = USPS(root=params.data_root,
                         train=train,

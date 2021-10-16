@@ -14,7 +14,7 @@ def get_mnist(train):
                                       transforms.Normalize(
                                           mean=params.dataset_mean,
                                           std=params.dataset_std)])
-
+    pre_process =  transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5,), (0.5,))])
     # dataset and data loader
     mnist_dataset = datasets.MNIST(root=params.data_root,
                                    train=train,
