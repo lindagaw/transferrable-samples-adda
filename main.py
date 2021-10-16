@@ -3,7 +3,7 @@ import pretty_errors
 import params
 
 from torchvision import datasets, transforms, models
-
+import torch
 import torch.nn as nn
 
 from core import eval_src, eval_tgt, train_src, train_tgt
