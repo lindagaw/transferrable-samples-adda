@@ -11,7 +11,7 @@ def get_mnist(train):
     """Get MNIST dataset loader."""
     # image pre-processing
     pre_process = transforms.Compose([transforms.ToTensor(),
-                                      transforms.Normalize(mean=(0.5, 0.5, 0.5), std=(0.5, 0.5, 0.5)
+                                      transforms.Normalize(mean=(0.5, 0.5, 0.5), std=(0.5, 0.5, 0.5),
                                       transforms.Resize((224,224))])
 
     # dataset and data loader
