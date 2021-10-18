@@ -17,6 +17,8 @@ class Discriminator(nn.Module):
             nn.ReLU(),
             nn.Linear(hidden_dims, hidden_dims),
             nn.ReLU(),
+            nn.Linear(hidden_dims, hidden_dims),
+            nn.ReLU(),
             nn.Linear(hidden_dims, output_dims),
             nn.LogSoftmax()
         )
