@@ -82,9 +82,7 @@ def train_tgt(src_encoder, tgt_encoder, critic,
             optimizer_tgt.zero_grad()
 
             # extract and target features
-            feat_tgt = tgt_encoder(images_tgt)
-
-            print(feat_tgt.shape)
+            feat_tgt = tgt_encoder(images_tgt.squeeze_())
 
             # predict on discriminator
             pred_tgt = critic(feat_tgt)

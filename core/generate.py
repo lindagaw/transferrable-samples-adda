@@ -63,8 +63,9 @@ def generate(generator, critic,
             pred_concat = critic(torch.squeeze(feat_concat).detach())
 
             # prepare real and fake label
-            label_src = make_variable(torch.ones(feat_src.size(0)).long())
-            label_tgt = make_variable(torch.zeros(feat_tgt.size(0)).long())
+            label_src = make_variable(torch.ones(feat_concat_real.size(0)).long())
+            label_tgt = make_variable(torch.zeros(feat_concat_fake.size(0)).long())
+
             label_concat = torch.cat((label_src, label_tgt), 0)
 
             # compute loss for critic
@@ -85,11 +86,8 @@ def generate(generator, critic,
             optimizer_critic.zero_grad()
             optimizer_tgt.zero_grad()
 
-            # extract and target features
-            feat_tgt = tgt_encoder(images_tgt)
-
             # predict on discriminator
-            pred_tgt = critic(feat_tgt)
+            pred_tgt = critic(feat_concat_fake)
 
             # prepare fake labels
             label_tgt = make_variable(torch.ones(feat_tgt.size(0)).long())
@@ -121,15 +119,15 @@ def generate(generator, critic,
         if ((epoch + 1) % params.save_step == 0):
             torch.save(critic.state_dict(), os.path.join(
                 params.model_root,
-                "ADDA-critic-{}.pt".format(epoch + 1)))
+                "transferrable-critic-{}.pt".format(epoch + 1)))
             torch.save(tgt_encoder.state_dict(), os.path.join(
                 params.model_root,
-                "ADDA-target-encoder-{}.pt".format(epoch + 1)))
+                "transferrable-target-encoder-{}.pt".format(epoch + 1)))
 
     torch.save(critic.state_dict(), os.path.join(
         params.model_root,
-        "ADDA-critic-final.pt"))
+        "transferrable-critic-final.pt"))
     torch.save(tgt_encoder.state_dict(), os.path.join(
         params.model_root,
-        "ADDA-target-encoder-final.pt"))
+        "transferrable-target-encoder-final.pt"))
     return tgt_encoder
