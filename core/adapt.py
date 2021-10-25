@@ -82,10 +82,10 @@ def train_tgt(src_encoder, tgt_encoder, critic,
             optimizer_tgt.zero_grad()
 
             # extract and target features
-            feat_tgt = tgt_encoder(images_tgt.squeeze_())
+            feat_tgt = tgt_encoder(images_tgt)
 
             # predict on discriminator
-            pred_tgt = critic(feat_tgt)
+            pred_tgt = critic(feat_tgt.squeeze_())
 
             # prepare fake labels
             label_tgt = make_variable(torch.ones(feat_tgt.size(0)).long())
