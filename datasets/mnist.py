@@ -10,9 +10,13 @@ import params
 def get_mnist(train):
     """Get MNIST dataset loader."""
     # image pre-processing
+    #pre_process = transforms.Compose([transforms.ToTensor(),
+    #                                  transforms.Lambda(lambda x: x.repeat(3, 1, 1)),
+    #                                  transforms.Resize((224,224))])
+
     pre_process = transforms.Compose([transforms.ToTensor(),
                                       transforms.Lambda(lambda x: x.repeat(3, 1, 1)),
-                                      transforms.Resize((224,224))])
+                                      transforms.Resize((28,28))])
 
     # dataset and data loader
     mnist_dataset = datasets.MNIST(root=params.data_root,

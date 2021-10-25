@@ -1,5 +1,3 @@
-"""Adversarial adaptation to train target encoder."""
-
 import os
 
 import torch
@@ -9,8 +7,9 @@ from torch import nn
 import params
 from utils import make_variable
 
+# the generate should generate something that doesn't look like target nor source data
 
-def train_tgt(src_encoder, tgt_encoder, critic,
+def generate(generator, critic,
               src_data_loader, tgt_data_loader):
     """Train encoder for target domain."""
     ####################
@@ -51,9 +50,14 @@ def train_tgt(src_encoder, tgt_encoder, critic,
             optimizer_critic.zero_grad()
 
             # extract and concat features
-            feat_src = src_encoder(images_src)
-            feat_tgt = tgt_encoder(images_tgt)
-            feat_concat = torch.cat((feat_src, feat_tgt), 0)
+            feat_src = images_src
+            feat_tgt = images_tgt
+            feat_src_fake = generator(images_src)
+            feat_tgt_fake = generator(images_tgt)
+
+            feat_concat_real = torch.cat((feat_src, feat_tgt), 0)
+            feat_concat_fake = torch.cat((feat_src_fake, feat_tgt_fake), 0)
+            feat_concat = torch.cat((feat_concat_real, feat_concat_fake), 0)
 
             # predict on discriminator
             pred_concat = critic(torch.squeeze(feat_concat).detach())
@@ -83,8 +87,6 @@ def train_tgt(src_encoder, tgt_encoder, critic,
 
             # extract and target features
             feat_tgt = tgt_encoder(images_tgt)
-
-            print(feat_tgt.shape)
 
             # predict on discriminator
             pred_tgt = critic(feat_tgt)
