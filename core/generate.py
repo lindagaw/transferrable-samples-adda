@@ -130,4 +130,4 @@ def generate(generator, critic,
     torch.save(tgt_encoder.state_dict(), os.path.join(
         params.model_root,
         "transferrable-target-encoder-final.pt"))
-    return tgt_encoder
+    return generator, critic

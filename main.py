@@ -7,6 +7,7 @@ import torch
 import torch.nn as nn
 
 from core import eval_src, eval_tgt, train_src, train_tgt
+from core import generate
 from models import Discriminator, LeNetClassifier, LeNetEncoder
 from utils import get_data_loader, init_model, init_random_seed
 
@@ -53,6 +54,9 @@ if __name__ == '__main__':
     print(tgt_encoder)
     print(">>> Critic <<<")
     print(critic)
+
+    generator, critic = generate(generator, critic,
+                  src_data_loader, tgt_data_loader)
 
     # init weights of target encoder with those of source encoder
     tgt_encoder = train_tgt(src_encoder, tgt_encoder, critic,
