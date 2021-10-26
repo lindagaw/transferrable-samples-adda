@@ -29,10 +29,9 @@ if __name__ == '__main__':
     tgt_encoder = torch.nn.Sequential(*(list(progenitor.children())[0:-1])).to(torch.device('cuda:0'))
     src_classifier = torch.nn.Linear(2048, 10).to(torch.device('cuda:0'))
 
-    critic = init_model(Discriminator(input_dims=params.d_input_dims,
-                                      hidden_dims=params.d_hidden_dims,
-                                      output_dims=params.d_output_dims),
-                        restore=params.d_model_restore)
+    critic = models.resnet50(pretrained=True)
+    critic.fc = torch.nn.Linear(2048, 2)
+    critic = critic.to(torch.device('cuda:0'))
 
     # train source model
     print("=== Training classifier for source domain ===")
