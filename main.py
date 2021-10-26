@@ -55,8 +55,8 @@ if __name__ == '__main__':
     print(">>> Critic <<<")
     print(critic)
 
-    generator, critic = generate(generator, critic,
-                  src_data_loader, tgt_data_loader)
+    #generator, critic = generate(generator, critic,
+    #              src_data_loader, tgt_data_loader)
 
     # init weights of target encoder with those of source encoder
     tgt_encoder = train_tgt(src_encoder, tgt_encoder, critic,
