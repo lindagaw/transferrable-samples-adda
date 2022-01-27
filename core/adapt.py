@@ -128,4 +128,4 @@ def train_tgt(src_encoder, tgt_encoder, critic,
     torch.save(tgt_encoder.state_dict(), os.path.join(
         params.model_root,
         "ADDA-target-encoder-final.pt"))
-    return tgt_encoder
+    return tgt_encoder, critic

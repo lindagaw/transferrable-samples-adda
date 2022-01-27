@@ -51,9 +51,12 @@ if __name__ == '__main__':
     # train target encoder by GAN
     print("=== Training encoder for target domain ===")
     print(">>> Target Encoder <<<")
-    print(tgt_encoder)
+    #print(tgt_encoder)
     print(">>> Critic <<<")
     print(critic)
+
+    tgt_encoder, critic = train_tgt(src_encoder, tgt_encoder, critic,
+                  src_data_loader, tgt_data_loader)
 
     #generator = init_model(Generator(input_length=28), restore='')
     #generator, critic = generate(generator, critic, src_data_loader, tgt_data_loader)
