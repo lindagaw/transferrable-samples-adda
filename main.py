@@ -55,7 +55,7 @@ if __name__ == '__main__':
     print(">>> Critic <<<")
     print(critic)
 
-    generator = init_model(Geneator(input_length=28), restore='')
+    generator = init_model(Generator(input_length=28), restore='')
 
     generator, critic = generate(generator, critic,
                   src_data_loader, tgt_data_loader)
