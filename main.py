@@ -31,7 +31,7 @@ if __name__ == '__main__':
     src_classifier = torch.nn.Linear(2048, 10).to(torch.device('cuda:0'))
 
     critic = models.resnet50(pretrained=True)
-    critic.fc = torch.nn.Linear(2048, 2)
+    critic.fc = torch.nn.Linear(2048, 1)
     critic = critic.to(torch.device('cuda:0'))
 
     # train source model
