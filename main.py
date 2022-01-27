@@ -55,10 +55,8 @@ if __name__ == '__main__':
     print(">>> Critic <<<")
     print(critic)
 
-    generator = init_model(Generator(input_length=28), restore='')
-
-    generator, critic = generate(generator, critic,
-                  src_data_loader, tgt_data_loader)
+    #generator = init_model(Generator(input_length=28), restore='')
+    #generator, critic = generate(generator, critic, src_data_loader, tgt_data_loader)
 
     # eval target encoder on test set of target dataset
     print("=== Evaluating classifier for encoded target domain ===")
