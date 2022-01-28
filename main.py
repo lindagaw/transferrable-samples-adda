@@ -41,9 +41,9 @@ if __name__ == '__main__':
     # train source model
     print("=== Training classifier for source domain ===")
     print(">>> Source Encoder <<<")
-    print(src_encoder)
+    #print(src_encoder)
     print(">>> Source Classifier <<<")
-    print(src_classifier)
+    #print(src_classifier)
 
 
     src_encoder, src_classifier = train_src(src_encoder, src_classifier, src_data_loader)
